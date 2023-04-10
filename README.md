@@ -22,10 +22,27 @@ $ vagrant up
 
 ```
 $ vagrant ssh
-$ sduo su
-# /vagrant/
+$ sudo su
+# cd /vagrant/
+# docker-compose up -d
+```
+
+Go to http://forum.example.com to see Discourse page.  
+Go to http://forum.example.com:1080 to see Maildev instance, to check the emails sent by Discourse.
+
+
+## How I reconstruct Docker image?
+
+Rebuild `stephaneklein/discourse:3.1.0.beta3` Docker image:
+
+```
 # git clone https://github.com/discourse/discourse_docker.git /var/discourse
 # cd /var/discourse
 # git checkout 7a7c47eefaf2d9a2b573f42e7bfb31bfe7402250 
 # cp /vagrant/app.yml containers/app.yml
+# ./launcher bootstrap app
+# docker images | grep "local_"
+local_discourse/app       latest              57659bb1bc11   3 hours ago     3.98GB
+# docker tag local_discourse/app stephaneklein/discourse:3.1.0.beta3
+# docker push stephaneklein/discourse:3.1.0.beta3
 ```

@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   maildev:
+    container_name: maildev
     image: maildev/maildev:2.0.5
     ports:
     - 1080:1080
@@ -8,3 +9,36 @@ services:
     environment:
       MAILDEV_INCOMING_USER: "user@example.com"
       MAILDEV_INCOMING_PASS: "password"
+
+  discourse:
+    image: stephaneklein/discourse:3.1.0.beta3
+    command: /sbin/boot
+    ports:
+      - 80:80
+    environment:
+      LANG: en_US.UTF-8
+      RAILS_ENV: production
+      UNICORN_WORKERS: 4
+      UNICORN_SIDEKIQS: 1
+      RUBY_GLOBAL_METHOD_CACHE_SIZE: 131072
+      RUBY_GC_HEAP_GROWTH_MAX_SLOTS: 40000
+      RUBY_GC_HEAP_INIT_SLOTS: 400000
+      RUBY_GC_HEAP_OLDOBJECT_LIMIT_FACTOR: 1.5
+      DISCOURSE_DB_SOCKET: /var/run/postgresql
+      DISCOURSE_DB_HOST:
+      DISCOURSE_DB_PORT:
+      LC_ALL: en_US.UTF-8
+      LANGUAGE: en_US.UTF-8
+      DISCOURSE_HOSTNAME: forum.example.com
+      DISCOURSE_DEVELOPER_EMAILS: me@example.com,you@example.com
+      DISCOURSE_SMTP_ADDRESS: maildev
+      DISCOURSE_SMTP_PORT: 1025
+      DISCOURSE_SMTP_USER_NAME: user@example.com
+      DISCOURSE_SMTP_PASSWORD: password
+      DISCOURSE_SMTP_ENABLE_START_TLS: "false"
+      DISCOURSE_SMTP_DOMAIN: forum.example.com
+      DISCOURSE_NOTIFICATION_EMAIL: noreply@forum.example.com
+      DOCKER_HOST_IP: 172.17.0.1
+    volumes:
+      - /var/discourse/shared/standalone:/shared
+      - /var/discourse/shared/standalone/log/var-log:/var/log
