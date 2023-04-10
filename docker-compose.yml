@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  maildev:
+    image: maildev/maildev:2.0.5
+    ports:
+    - 1080:1080
+    - 1025:1025
+    environment:
+      MAILDEV_INCOMING_USER: "user@example.com"
+      MAILDEV_INCOMING_PASS: "password"
