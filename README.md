@@ -19,10 +19,20 @@ $ vagrant plugin install vagrant-hostmanager --plugin-version 1.8.9
 ```sh
 $ vagrant up
 ```
+Install Docker:
+
+```sh
+$ sudo -i
+# cd /tmp/
+# curl -fsSL https://get.docker.com -o get-docker.sh
+# sh ./get-docker.sh
+# apt install python3-pip -y
+# pip install docker-compose
+```
 
 ```
 $ vagrant ssh
-$ sudo su
+$ sudo -i
 # cd /vagrant/
 # docker-compose up -d
 ```
@@ -46,6 +56,8 @@ x86_64 arch detected.
 Rebuild `stephaneklein/discourse:3.1.0.beta3` Docker image:
 
 ```
+$ vagrant ssh
+$ sudo -i
 # git clone https://github.com/discourse/discourse_docker.git /var/discourse
 # cd /var/discourse
 # git checkout 7a7c47eefaf2d9a2b573f42e7bfb31bfe7402250 
