@@ -40,5 +40,13 @@ services:
       DISCOURSE_NOTIFICATION_EMAIL: noreply@forum.example.com
       DOCKER_HOST_IP: 172.17.0.1
     volumes:
-      - /var/discourse/shared/standalone:/shared
-      - /var/discourse/shared/standalone/log/var-log:/var/log
+      - /var/lib/discourse/backups/:/shared/backups/
+      - /var/lib/discourse/postgres_backup/:/shared/postgres_backup/
+      - /var/lib/discourse/postgres_data/:/shared/postgres_data/
+      - /var/lib/discourse/postgres_run/:/shared/postgres_run/
+      - /var/lib/discourse/redis_data/:/shared/redis_data/
+      - /var/lib/discourse/state/:/shared/state/
+      - /var/lib/discourse/tmp/:/shared/tmp/
+      - /var/lib/discourse/uploads/:/shared/uploads/
+      - /var/log/discourse/:/shared/log/
+      - /var/log/discourse/redis/:/var/log/redis/
