@@ -19,17 +19,6 @@ $ vagrant plugin install vagrant-hostmanager --plugin-version 1.8.9
 ```sh
 $ vagrant up
 ```
-Install Docker:
-
-```sh
-$ sudo -i
-# cd /tmp/
-# curl -fsSL https://get.docker.com -o get-docker.sh
-# sh ./get-docker.sh
-# apt install python3-pip -y
-# pip install docker-compose
-```
-
 ```
 $ vagrant ssh
 $ sudo -i
