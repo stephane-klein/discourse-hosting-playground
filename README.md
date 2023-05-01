@@ -49,7 +49,6 @@ $ vagrant ssh
 $ sudo -i
 # git clone https://github.com/discourse/discourse_docker.git /var/discourse
 # cd /var/discourse
-# git checkout 7a7c47eefaf2d9a2b573f42e7bfb31bfe7402250 
 # cp /vagrant/app.yml containers/app.yml
 # ./launcher bootstrap app
 # docker images | grep "local_"
