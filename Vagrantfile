@@ -31,6 +31,11 @@ Vagrant.configure("2") do |config|
   config.hostmanager.manage_guest = true
   config.hostmanager.aliases = ["forum.example.com"]
 
+  config.vm.provider :virtualbox do |vb|
+    vb.memory = '8096'
+    vb.cpus = '4'
+  end
+
   if Vagrant.has_plugin?("HostManager")
     config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
       read_ip_address(vm)
